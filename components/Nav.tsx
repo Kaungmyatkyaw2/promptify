@@ -44,6 +44,8 @@ const Nav = () => {
     setProviderState();
   }, []);
 
+  console.log(session?.user)
+
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href={"/"} className="flex gap-2 flex-center">
@@ -136,14 +138,14 @@ const Nav = () => {
             {providers &&
               Object.values(providers).map((provider) => (
                 <Button
-                type="button"
-                key={provider.name}
-                onClick={() => {
-                  signIn(provider.id);
-                }}
-              >
-                Sign in
-              </Button>
+                  type="button"
+                  key={provider.name}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
+                >
+                  Sign in
+                </Button>
               ))}
           </>
         )}
