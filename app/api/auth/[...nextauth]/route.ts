@@ -19,6 +19,7 @@ const handler = NextAuth({
       if (session.user) {
         session.user.id = sessionUser._id.toString();
       }
+      console.log({session},"Session Fn Invoked")
       return session;
     },
     async signIn({ profile, user }) {
