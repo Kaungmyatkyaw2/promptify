@@ -10,11 +10,11 @@ const handler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      checks: ["none"],
     }),
   ],
   callbacks: {
     async session({ session }) {
-      await connectToDB();
       const sessionUser = await User.findOne({ email: session.user?.email });
       if (session.user) {
         session.user.id = sessionUser._id.toString();
