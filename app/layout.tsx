@@ -1,11 +1,15 @@
 import Nav from "@/components/Nav";
 import Provider from "@/components/Provider";
 import "@/styles/globals.css";
+import { Metadata } from "next";
 import { ReactNode } from "react";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Promptify",
   description: "Discover & Share AI Prompts",
+  icons: {
+    icon: "/assets/images/logo.svg",
+  },
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

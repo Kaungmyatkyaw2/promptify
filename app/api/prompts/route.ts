@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) => {
     return new Response(JSON.stringify(newPrompt), { status: 200 });
   } catch (error) {
     console.log(error);
-    return new Response("Failed to create a prompt", { status: 500 });
+    return new Response("Failed to fetch prompts", { status: 500 });
   }
 };
 
