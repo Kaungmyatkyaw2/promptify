@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Button } from './ui/button'
 import { Check, Copy } from 'lucide-react'
 import { useSession } from 'next-auth/react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 type handleTagClickType = () => any
 
@@ -23,6 +23,8 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }: Props) =
   const { data: session } = useSession()
   const pathname = usePathname()
 
+  const router = useRouter()
+
   const handleCopyPrompt = () => {
     setCopiedPrompt(post.prompt)
     navigator.clipboard.writeText(post.prompt)
@@ -35,7 +37,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }: Props) =
     <div className='flex-1 break-inside-avoid-column rounded-lg border border-gray-300 glassmorphism p-6 pb-4 md:w-[360px] w-full h-fit'>
       <div className="flex justify-between items-start">
         <div className='flex-1 flex flex-center justify-start gap-3'>
-          <Image alt='creator-profile' src={post.creator.image} width={45} height={45} className='rounded-full' />
+          <Image onClick={() => { session?.user.id == post.creator._id ? router.push(`/profile`) : router.push(`/profile/${post.creator._id}`) }} alt='creator-profile' src={post.creator.image} width={45} height={45} className='rounded-full cursor-pointer' />
           <div className='space-y-[2px]'>
             <h3 className='font-semibold font-satoshi text-gray-900'>{post.creator.username}</h3>
             <p className='font-inter text-gray-500 text-xs'>{post.creator.email}</p>

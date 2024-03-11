@@ -6,22 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 // Every next js route is serverless
 
 const handler = NextAuth({
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-      checks: ["none"],
-    }),
-  ],
   callbacks: {
-    async session({ session }) {
-      const sessionUser = await User.findOne({ email: session.user?.email });
-      if (session.user) {
-        session.user.id = sessionUser._id.toString();
-      }
-      console.log({session},"Session Fn Invoked")
-      return session;
-    },
     async signIn({ profile, user }) {
       try {
         await connectToDB();
@@ -41,7 +26,26 @@ const handler = NextAuth({
         return false;
       }
     },
+    async session({ session }) {
+      try {
+        const sessionUser = await User.findOne({ email: session.user?.email });
+        if (session.user) {
+          session.user.id = sessionUser._id.toString();
+        }
+        return session;
+      } catch (error) {
+        console.log("Error : ", error);
+        return session;
+      }
+    },
   },
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      checks: ["none"],
+    }),
+  ],
 });
 
 export { handler as GET, handler as POST };

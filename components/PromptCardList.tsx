@@ -16,7 +16,7 @@ const PromptCardList = ({ data, handleTagClick, handleDelete, handleEdit }: Prop
 
 
 
-    return <div className="mt-16 space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3">
+    return <div className="mt-10 space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3">
         {data.map(post => <PromptCard
             key={post._id}
             post={post}

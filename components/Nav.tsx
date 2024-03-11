@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Button } from "./ui/button";
-import { LogOut, Plus } from "lucide-react";
+import { LogOut, Plus, UserRound } from "lucide-react";
 
 type ProvidersObj = Record<
   LiteralUnion<BuiltInProviderType, string>,
@@ -44,7 +44,6 @@ const Nav = () => {
     setProviderState();
   }, []);
 
-  console.log( session )
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -115,6 +114,12 @@ const Nav = () => {
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
+              <DropdownMenuItem asChild className="space-x-2">
+                <Link href={"/profile"}>
+                  <UserRound className="w-4 h-4" />
+                  <span>My Profile</span>
+                </Link>
+              </DropdownMenuItem>{" "}
               <DropdownMenuItem asChild className="space-x-2">
                 <Link href={"/create-prompt"}>
                   <Plus className="w-4 h-4" />

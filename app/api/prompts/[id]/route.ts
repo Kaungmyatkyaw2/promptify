@@ -58,6 +58,6 @@ export const DELETE = async (
     return new Response("Successfully deleted", { status: 200 });
   } catch (error) {
     console.log(error);
-    return new Response("Failed to create a prompt", { status: 500 });
+    return new Response("Failed to delete a prompt", { status: 500 });
   }
 };
