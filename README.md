@@ -7,13 +7,13 @@ This project is a CRUD (Create, Read, Update, Delete) application built using Ne
 1. Clone the repository:
 
     ```
-    git clone https://github.com/your-username/nextjs-crud-app.git
+    git clone https://github.com/Kaungmyatkyaw2/promptify.git
     ```
 
 2. Navigate to the project directory:
 
     ```
-    cd nextjs-crud-app
+    cd promptify
     ```
 
 3. Install dependencies:
